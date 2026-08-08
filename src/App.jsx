@@ -619,7 +619,7 @@ export default function App() {
         }
         .header { margin-bottom: 20px; }
         .eyebrow {
-          font-family: 'JetBrains Mono', monospace;
+          font-family: 'JetBrains Mono', poppins;
           font-size: 11px;
           letter-spacing: 0.14em;
           text-transform: uppercase;
@@ -651,7 +651,7 @@ export default function App() {
         .controls-row { display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-end; margin-bottom: 14px; }
         .select-wrap { display: flex; flex-direction: column; gap: 6px; }
         .select-label {
-          font-family: 'JetBrains Mono', monospace;
+          font-family: 'JetBrains Mono', poppins;
           font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
         }
         .select {
@@ -666,7 +666,7 @@ export default function App() {
         .segctl-btn.active { background: var(--accent); color: var(--text); }
         .row-head {
           display: grid; grid-template-columns: 32px 1.2fr 1.9fr 1fr 0.85fr; gap: 14px; padding: 0 14px 8px 14px;
-          color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace;
+          color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; font-family: 'JetBrains Mono', poppins;
         }
         .rows { display: flex; flex-direction: column; gap: 10px; }
         .empty { color: var(--muted); font-size: 13px; padding: 20px; text-align: center; }
@@ -680,19 +680,19 @@ export default function App() {
         .row-label-sub { color: var(--muted); font-size: 11px; }
         .row-stat { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
         .row-stat-label { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
-        .row-stat-num { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 14px; }
+        .row-stat-num { font-family: 'JetBrains Mono', poppins; font-weight: 700; font-size: 14px; }
         .row-stat-num-lg { font-size: 18px; }
         .row-stat-dim { color: var(--muted); font-weight: 500; font-size: 11px; }
         .row-stat-soft { color: var(--muted); font-size: 11px; margin-top: 2px; }
         .podium-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 18px; }
         .podium-card { background: var(--surface-alt); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
-        .podium-title { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 10px; }
+        .podium-title { font-family: 'JetBrains Mono', poppins; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 10px; }
         .podium-empty { color: var(--muted); font-size: 12px; padding: 8px 0; }
         .podium-entry { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-top: 1px solid var(--border); }
         .podium-entry:first-child { border-top: none; }
         .podium-medal { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 12px; color: var(--muted); width: 30px; flex-shrink: 0; }
         .podium-name { flex: 1; font-size: 13px; font-weight: 600; color: var(--text); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .podium-value { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; color: var(--text); flex-shrink: 0; }
+        .podium-value { font-family: 'JetBrains Mono', poppins; font-weight: 700; font-size: 12px; color: var(--text); flex-shrink: 0; }
         .podium-rank-1 .podium-medal { color: var(--progress); font-size: 15px; }
         .podium-rank-1 .podium-name { color: var(--progress); font-size: 16px; }
         .podium-rank-1 .podium-value { color: var(--progress); font-size: 15px; }
@@ -709,7 +709,7 @@ export default function App() {
         .exec-table-head, .exec-row {
           display: grid; grid-template-columns: 1.6fr 0.7fr 1.4fr 1fr 1fr; gap: 10px; align-items: center; padding: 10px 8px;
         }
-        .exec-table-head { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace; }
+        .exec-table-head { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; font-family: 'JetBrains Mono', poppins; }
         .exec-row { background: var(--surface-alt); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; }
         .exec-row-label { font-weight: 600; }
         .mini-bar { width: 70px; height: 5px; background: var(--bg); border-radius: 3px; display: inline-block; margin-right: 8px; vertical-align: middle; overflow: hidden; }
