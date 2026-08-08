@@ -203,9 +203,9 @@ function statusForMembers(members) {
    ============================================================================ */
 
 const TONE_COLORS = {
-  good: "var(--teal)",
-  warn: "var(--gold)",
-  bad: "var(--coral)",
+  good: "var(--progress)",
+  warn: "var(--amber)",
+  bad: "var(--danger)",
 };
 
 function StatusPill({ tone, label }) {
@@ -524,9 +524,10 @@ export default function App() {
           --border: #2a3348;
           --text: #edeff5;
           --muted: #8891a5;
-          --gold: #f2b705;
-          --teal: #2dd4bf;
-          --coral: #ff6b5b;
+         --accent: #ff6b5b;   /* primary accent: rank numbers, winning bar fill, active tab/button states */
+  --progress: #6366f1; /* progress bars, "On track" status */
+  --amber: #f2b705;    /* "At risk" status */
+  --danger: #e11d48;   /* "Behind" status */
         }
         * { box-sizing: border-box; }
         .app {
@@ -543,7 +544,7 @@ export default function App() {
           font-size: 11px;
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: var(--gold);
+          color: var(--accent);
           margin-bottom: 6px;
         }
         .title {
@@ -566,7 +567,7 @@ export default function App() {
           cursor: pointer;
           font-family: inherit;
         }
-        .tab-btn.active { color: var(--bg); background: var(--gold); border-color: var(--gold); }
+        .tab-btn.active { color: var(--bg); background: var(--accent); border-color: var(--accent); }
         .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
         .controls-row { display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-end; margin-bottom: 14px; }
         .select-wrap { display: flex; flex-direction: column; gap: 6px; }
@@ -583,7 +584,7 @@ export default function App() {
           background: transparent; border: none; color: var(--muted); padding: 7px 12px; border-radius: 6px;
           font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit;
         }
-        .segctl-btn.active { background: var(--gold); color: var(--bg); }
+        .segctl-btn.active { background: var(--accent); color: var(--bg); }
         .board-caption { color: var(--muted); font-size: 13px; margin: 4px 0 14px 0; }
         .row-head {
           display: grid; grid-template-columns: 32px 1.4fr 1.3fr 1.2fr 1.4fr; gap: 14px; padding: 0 14px 8px 14px;
@@ -595,7 +596,7 @@ export default function App() {
           display: grid; grid-template-columns: 32px 1.4fr 1.3fr 1.2fr 1.4fr; gap: 14px; align-items: center;
           background: var(--surface-alt); border: 1px solid var(--border); border-radius: 10px; padding: 14px;
         }
-        .row-rank { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 20px; color: var(--gold); text-align: center; }
+        .row-rank { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 20px; color: var(--accent); text-align: center; }
         .row-label { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
         .row-label-main { font-weight: 600; font-size: 14px; }
         .row-label-sub { color: var(--muted); font-size: 11px; }
@@ -608,7 +609,7 @@ export default function App() {
           display: flex; align-items: center; gap: 18px; background: var(--surface-alt);
           border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin-bottom: 18px;
         }
-        .headline-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 46px; color: var(--gold); line-height: 1; }
+        .headline-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 46px; color: var(--accent); line-height: 1; }
         .headline-title { font-weight: 600; font-size: 15px; }
         .headline-sub { color: var(--muted); font-size: 12px; margin-top: 2px; }
         .exec-table { display: flex; flex-direction: column; gap: 2px; }
@@ -619,7 +620,7 @@ export default function App() {
         .exec-row { background: var(--surface-alt); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; }
         .exec-row-label { font-weight: 600; }
         .mini-bar { width: 70px; height: 5px; background: var(--bg); border-radius: 3px; display: inline-block; margin-right: 8px; vertical-align: middle; overflow: hidden; }
-        .mini-bar-fill { height: 100%; background: var(--teal); }
+        .mini-bar-fill { height: 100%; background: var(--progress); }
         .pill {
           display: inline-flex; align-items: center; gap: 6px; border: 1px solid; border-radius: 20px;
           padding: 3px 10px; font-size: 11px; font-weight: 600;
