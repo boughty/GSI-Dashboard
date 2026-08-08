@@ -645,7 +645,7 @@ export default function App() {
           cursor: pointer;
           font-family: inherit;
         }
-        .tab-btn.active { color: var(--bg); background: var(--accent); border-color: var(--accent); }
+        .tab-btn.active { color: var(--text); background: var(--accent); border-color: var(--accent); }
         .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
         .controls-row { display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-end; margin-bottom: 14px; }
         .select-wrap { display: flex; flex-direction: column; gap: 6px; }
@@ -662,7 +662,7 @@ export default function App() {
           background: transparent; border: none; color: var(--muted); padding: 7px 12px; border-radius: 6px;
           font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit;
         }
-        .segctl-btn.active { background: var(--accent); color: var(--bg); }
+        .segctl-btn.active { background: var(--accent); color: var(--text); }
         .row-head {
           display: grid; grid-template-columns: 32px 1.2fr 1.9fr 1fr 0.85fr; gap: 14px; padding: 0 14px 8px 14px;
           color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace;
