@@ -618,7 +618,7 @@ export default function App() {
           border-radius: 12px;
         }
         .header { position: relative; margin-bottom: 20px; padding-right: 100px; }
-        .app-logo { position: absolute; top: 0; right: 0; height: 72px; width: auto; }
+        .app-logo { position: absolute; top: 0; right: 0; height: 79px; width: auto; }
         .eyebrow {
           font-family: 'Poppins', sans-serif;
           font-size: 11px;
@@ -636,7 +636,6 @@ export default function App() {
         }
         .subtitle { color: var(--muted); font-size: 14px; margin: 0; }
         .tabs { display: flex; gap: 8px; margin: 22px 0; }
-        .app-logo { height: 34px; width: auto; }
         .tab-btn {
           background: var(--surface);
           border: 1px solid var(--border);
@@ -726,7 +725,7 @@ export default function App() {
           .title { font-size: 26px; }
           .podium-row { grid-template-columns: 1fr; }
           .header { padding-right: 60px; }
-          .app-logo { height: 44px; }
+          .app-logo { height: 48px; }
         }
       `}</style>
 
