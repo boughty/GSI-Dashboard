@@ -674,7 +674,7 @@ export default function App() {
           display: grid; grid-template-columns: 32px 1.2fr 1.9fr 1fr 0.85fr; gap: 14px; align-items: center;
           background: var(--surface-alt); border: 1px solid var(--border); border-radius: 10px; padding: 14px;
         }
-        .row-rank { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 20px; color: var(--accent); text-align: center; }
+        .row-rank { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 20px; color: var(--accent); text-align: center; }
         .row-label { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
         .row-label-main { font-weight: 600; font-size: 14px; }
         .row-label-sub { color: var(--muted); font-size: 11px; }
@@ -690,7 +690,7 @@ export default function App() {
         .podium-empty { color: var(--muted); font-size: 12px; padding: 8px 0; }
         .podium-entry { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-top: 1px solid var(--border); }
         .podium-entry:first-child { border-top: none; }
-        .podium-medal { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px; color: var(--muted); width: 30px; flex-shrink: 0; }
+        .podium-medal { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11px; color: var(--muted); width: 30px; flex-shrink: 0; }
         .podium-name { flex: 1; font-size: 13px; font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .podium-value { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 13px; flex-shrink: 0; }
         .podium-rank-1 .podium-medal, .podium-rank-1 .podium-value { color: var(--accent); }
@@ -701,7 +701,7 @@ export default function App() {
           display: flex; align-items: center; gap: 18px; background: var(--surface-alt);
           border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin-bottom: 18px;
         }
-        .headline-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 46px; color: var(--accent); line-height: 1; }
+        .headline-num { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 46px; color: var(--accent); line-height: 1; }
         .headline-title { font-weight: 600; font-size: 15px; }
         .headline-sub { color: var(--muted); font-size: 12px; margin-top: 2px; }
         .exec-table { display: flex; flex-direction: column; gap: 2px; }
