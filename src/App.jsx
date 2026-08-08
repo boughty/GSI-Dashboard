@@ -671,7 +671,7 @@ export default function App() {
         .rows { display: flex; flex-direction: column; gap: 10px; }
         .empty { color: var(--muted); font-size: 13px; padding: 20px; text-align: center; }
         .row {
-          display: grid; grid-template-columns: 32px 1.2fr 1.9fr 1fr 0.85fr; gap: 14px; align-items: center;
+          display: grid; grid-template-columns: 32px 1.2fr 1.9fr 1fr 0.85fr; gap: 14px; align-items: start;
           background: var(--surface-alt); border: 1px solid var(--border); border-radius: 10px; padding: 14px;
         }
         .row-rank { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 20px; color: var(--accent); text-align: center; }
