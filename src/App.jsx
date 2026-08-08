@@ -702,7 +702,7 @@ export default function App() {
           display: flex; align-items: center; gap: 18px; background: var(--surface-alt);
           border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin-bottom: 18px;
         }
-        .headline-num { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 46px; color: var(--accent); line-height: 1; }
+        .headline-num { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 46px; color: var(--progress); line-height: 1; }
         .headline-title { font-weight: 600; font-size: 15px; }
         .headline-sub { color: var(--muted); font-size: 12px; margin-top: 2px; }
         .exec-table { display: flex; flex-direction: column; gap: 2px; }
