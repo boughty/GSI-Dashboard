@@ -729,6 +729,7 @@ export default function App() {
           .row-head { display: none; }
           .row { grid-template-columns: 1fr; gap: 6px; }
           .row-rank { text-align: left; }
+          .exec-table-head span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         }
       `}</style>
 
