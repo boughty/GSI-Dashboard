@@ -301,6 +301,24 @@ const DIMENSIONS = {
 };
 const MIN_FIELD = 12; // small-field rollup threshold: below this, don't present it as a standalone race
 
+const MEDALS = ["1st", "2nd", "3rd"];
+
+function PodiumCard({ title, top3 }) {
+  return (
+    <div className="podium-card">
+      <div className="podium-title">{title}</div>
+      {top3.length === 0 && <div className="podium-empty">No finished waves yet</div>}
+      {top3.map((g, i) => (
+        <div className={`podium-entry podium-rank-${i + 1}`} key={g.label}>
+          <span className="podium-medal">{MEDALS[i]}</span>
+          <span className="podium-name">{g.label}</span>
+          <span className="podium-value">{g.avgFinishDay}d</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function GamifiedBoards({ data }) {
   const activeWave = useMemo(() => {
     const started = WAVES.filter((w) => w.startDay <= TODAY);
@@ -316,19 +334,48 @@ function GamifiedBoards({ data }) {
 
   const otherDims = ["Geo", "Function", "Vertical"].filter((d) => d !== racingDim);
 
+  const waveOnlyScoped = useMemo(() => {
+    return wave === "all" ? data : data.filter((p) => p.wave === Number(wave));
+  }, [data, wave]);
+
   const scoped = useMemo(() => {
-    let rows = wave === "all" ? data : data.filter((p) => p.wave === Number(wave));
+    let rows = waveOnlyScoped;
     if (withinDim !== "none" && withinVal) {
       const accessor = DIMENSIONS[withinDim].accessor;
       rows = rows.filter((p) => accessor(p) === withinVal);
     }
     return rows;
-  }, [data, wave, withinDim, withinVal]);
+  }, [waveOnlyScoped, withinDim, withinVal]);
 
   const board = useMemo(() => {
     const accessor = DIMENSIONS[racingDim].accessor;
     return groupStats(scoped, accessor).filter((g) => g.count >= MIN_FIELD);
   }, [scoped, racingDim]);
+
+  // podiums are wave-independent: each group's best-ever avg-days-to-badge, taken only from
+  // waves that have actually finished, so a still-running wave can never distort the record
+  const podiums = useMemo(() => {
+    const finishedWaves = WAVES.filter((w) => TODAY - w.startDay > EXPECTED_DAYS_TO_COMPLETE);
+    return ["Geo", "Function", "Vertical"].map((dim) => {
+      const accessor = DIMENSIONS[dim].accessor;
+      const bestByLabel = {};
+      finishedWaves.forEach((w) => {
+        const waveData = data.filter((p) => p.wave === w.id);
+        groupStats(waveData, accessor)
+          .filter((g) => g.count >= MIN_FIELD && g.avgFinishDay != null)
+          .forEach((g) => {
+            if (!bestByLabel[g.label] || g.avgFinishDay < bestByLabel[g.label]) {
+              bestByLabel[g.label] = g.avgFinishDay;
+            }
+          });
+      });
+      const top3 = Object.entries(bestByLabel)
+        .map(([label, avgFinishDay]) => ({ label, avgFinishDay }))
+        .sort((a, b) => a.avgFinishDay - b.avgFinishDay)
+        .slice(0, 3);
+      return { dim, top3 };
+    });
+  }, [data]);
 
   // wave status: how to talk about "speed" for whichever wave(s) are in view
   const waveStatus = useMemo(() => {
@@ -357,12 +404,6 @@ function GamifiedBoards({ data }) {
   return (
     <div className="panel">
       <div className="controls-row">
-        <Select
-          label="Wave"
-          value={wave}
-          onChange={setWave}
-          options={["all", ...WAVES.map((w) => String(w.id))]}
-        />
         <div className="select-wrap">
           <span className="select-label">Racing</span>
           <SegmentedControl
@@ -380,6 +421,23 @@ function GamifiedBoards({ data }) {
         {withinDim !== "none" && (
           <Select label={withinDim} value={withinVal} onChange={setWithinVal} options={DIMENSIONS[withinDim].options} />
         )}
+      </div>
+
+      <div className="controls-row">
+        <div className="select-wrap">
+          <span className="select-label">Wave</span>
+          <SegmentedControl
+            value={wave}
+            onChange={setWave}
+            options={[{ value: "all", label: "All" }, ...WAVES.map((w) => ({ value: String(w.id), label: String(w.id) }))]}
+          />
+        </div>
+      </div>
+
+      <div className="podium-row">
+        <PodiumCard title="Geo Sprint all-time best" top3={podiums.find((p) => p.dim === "Geo").top3} />
+        <PodiumCard title="Function Sprint all-time best" top3={podiums.find((p) => p.dim === "Function").top3} />
+        <PodiumCard title="Vertical Sprint all-time best" top3={podiums.find((p) => p.dim === "Vertical").top3} />
       </div>
 
       <div className="row-head">
@@ -424,12 +482,17 @@ function ExecDashboard({ data }) {
   const [scopeDim, setScopeDim] = useState("Function");
   const [scopeVal, setScopeVal] = useState(FUNCTIONS[0].key);
   const [breakdown, setBreakdown] = useState("Geography");
+  const [wave, setWave] = useState("all");
 
   const scopeOptions = { Function: FUNCTIONS.map((f) => f.key), Geography: GEOS, Vertical: VERTICALS };
   const scopeKeyFn = { Function: (p) => p.function, Geography: (p) => p.geo, Vertical: (p) => p.vertical }[scopeDim];
   const breakdownKeyFn = { Function: (p) => p.function, Geography: (p) => p.geo, Vertical: (p) => p.vertical }[breakdown];
 
-  const scoped = useMemo(() => data.filter((p) => scopeKeyFn(p) === scopeVal), [data, scopeKeyFn, scopeVal]);
+  const scoped = useMemo(() => {
+    let rows = data.filter((p) => scopeKeyFn(p) === scopeVal);
+    if (wave !== "all") rows = rows.filter((p) => p.wave === Number(wave));
+    return rows;
+  }, [data, scopeKeyFn, scopeVal, wave]);
 
   const headline = useMemo(() => {
     const avg = scoped.reduce((s, p) => s + p.progressPct, 0) / (scoped.length || 1);
@@ -441,9 +504,15 @@ function ExecDashboard({ data }) {
     const stats = groupStats(scoped, breakdownKeyFn);
     return stats.map((s) => {
       const members = scoped.filter((p) => breakdownKeyFn(p) === s.label);
-      return { ...s, status: statusForMembers(members) };
+      // a single wave means everyone shares the same start day, so the simple
+      // per-wave status function is valid; "all" spans mixed wave stages and
+      // needs the per-person version to avoid the averaging bug we hit earlier
+      const status = wave === "all"
+        ? statusForMembers(members)
+        : statusFor(s.avgPct, WAVES.find((w) => w.id === Number(wave)).startDay);
+      return { ...s, status };
     });
-  }, [scoped, breakdownKeyFn]);
+  }, [scoped, breakdownKeyFn, wave]);
 
   const onDimChange = (dim) => {
     setScopeDim(dim);
@@ -471,11 +540,22 @@ function ExecDashboard({ data }) {
         />
       </div>
 
+      <div className="controls-row">
+        <div className="select-wrap">
+          <span className="select-label">Wave</span>
+          <SegmentedControl
+            value={wave}
+            onChange={setWave}
+            options={[{ value: "all", label: "All" }, ...WAVES.map((w) => ({ value: String(w.id), label: String(w.id) }))]}
+          />
+        </div>
+      </div>
+
       <div className="headline-card">
         <div className="headline-num">{headline.avg}%</div>
         <div className="headline-meta">
           <div className="headline-title">{scopeVal} — overall progress</div>
-          <div className="headline-sub">{headline.finished} of {headline.total} certified across all waves</div>
+          <div className="headline-sub">{headline.finished} of {headline.total} certified{wave === "all" ? " across all waves" : ` in Wave ${wave}`}</div>
         </div>
       </div>
 
@@ -603,6 +683,17 @@ export default function App() {
         .row-stat-num-lg { font-size: 18px; }
         .row-stat-dim { color: var(--muted); font-weight: 500; font-size: 11px; }
         .row-stat-soft { color: var(--muted); font-size: 11px; margin-top: 2px; }
+        .podium-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 18px; }
+        .podium-card { background: var(--surface-alt); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+        .podium-title { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 10px; }
+        .podium-empty { color: var(--muted); font-size: 12px; padding: 8px 0; }
+        .podium-entry { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-top: 1px solid var(--border); }
+        .podium-entry:first-child { border-top: none; }
+        .podium-medal { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px; color: var(--muted); width: 30px; flex-shrink: 0; }
+        .podium-name { flex: 1; font-size: 13px; font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .podium-value { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+        .podium-rank-1 .podium-medal, .podium-rank-1 .podium-value { color: var(--accent); }
+        .podium-rank-1 .podium-name { font-size: 15px; }
         .progress-track { width: 100%; height: 10px; background: var(--border); border-radius: 5px; overflow: hidden; margin: 2px 0; }
         .progress-fill { height: 100%; background: var(--progress); border-radius: 5px; }
         .headline-card {
@@ -629,6 +720,7 @@ export default function App() {
         @media (max-width: 720px) {
           .exec-table-head, .exec-row { grid-template-columns: 1.4fr 0.6fr 1fr 0.8fr 0.9fr; font-size: 11px; }
           .title { font-size: 26px; }
+          .podium-row { grid-template-columns: 1fr; }
         }
       `}</style>
 
