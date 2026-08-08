@@ -602,7 +602,7 @@ export default function App() {
           --border: #2a3348;
           --text: #edeff5;
           --muted: #8891a5;
-          --accent: #ff6b5b;   /* primary accent: rank numbers, winning bar fill, active tab/button states */
+          --accent: #d97757;   /* primary accent: rank numbers, winning bar fill, active tab/button states */
           --progress: #6366f1; /* progress bars, "On track" status */
           --amber: #f2b705;    /* "At risk" status */
           --danger: #e11d48;   /* "Behind" status — distinct from --accent so it never gets confused with a rank/active-state color */
