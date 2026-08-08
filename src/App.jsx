@@ -382,8 +382,6 @@ function GamifiedBoards({ data }) {
         )}
       </div>
 
-      <p className="board-caption">{waveStatus.caption}</p>
-
       <div className="row-head">
         <span></span>
         <span>{racingDim}</span>
@@ -524,10 +522,10 @@ export default function App() {
           --border: #2a3348;
           --text: #edeff5;
           --muted: #8891a5;
-         --accent: #ff6b5b;   /* primary accent: rank numbers, winning bar fill, active tab/button states */
-  --progress: #6366f1; /* progress bars, "On track" status */
-  --amber: #f2b705;    /* "At risk" status */
-  --danger: #e11d48;   /* "Behind" status */
+          --accent: #ff6b5b;   /* primary accent: rank numbers, winning bar fill, active tab/button states */
+          --progress: #6366f1; /* progress bars, "On track" status */
+          --amber: #f2b705;    /* "At risk" status */
+          --danger: #e11d48;   /* "Behind" status — distinct from --accent so it never gets confused with a rank/active-state color */
         }
         * { box-sizing: border-box; }
         .app {
@@ -585,7 +583,6 @@ export default function App() {
           font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit;
         }
         .segctl-btn.active { background: var(--accent); color: var(--bg); }
-        .board-caption { color: var(--muted); font-size: 13px; margin: 4px 0 14px 0; }
         .row-head {
           display: grid; grid-template-columns: 32px 1.4fr 1.3fr 1.2fr 1.4fr; gap: 14px; padding: 0 14px 8px 14px;
           color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace;
