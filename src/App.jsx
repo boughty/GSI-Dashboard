@@ -726,6 +726,9 @@ export default function App() {
           .podium-row { grid-template-columns: 1fr; }
           .header { padding-right: 60px; }
           .app-logo { height: 48px; }
+          .row-head { display: none; }
+          .row { grid-template-columns: 1fr; gap: 6px; }
+          .row-rank { text-align: left; }
         }
       `}</style>
 
