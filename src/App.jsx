@@ -232,8 +232,8 @@ function BoardRow({ rank, label, count, finishedCount, finishedPct, avgPct, spee
 
       <div className="row-stat">
         <div className="row-stat-label">{completionLabel}</div>
-        <div className="mini-bar"><div className="mini-bar-fill" style={{ width: `${completionValue}%` }} /></div>
-        <div className="row-stat-num">{completionValue}%</div>
+        <div className="progress-track"><div className="progress-fill" style={{ width: `${completionValue}%` }} /></div>
+        <div className="row-stat-num row-stat-num-lg">{completionValue}%</div>
       </div>
 
       <div className="row-stat">
@@ -244,18 +244,18 @@ function BoardRow({ rank, label, count, finishedCount, finishedPct, avgPct, spee
       <div className="row-stat">
         <div className="row-stat-label">Speed</div>
         {speedMode === "resolved" && avgFinishDay != null && (
-          <div className="row-stat-num">{avgFinishDay}d <span className="row-stat-dim">avg to badge</span></div>
+          <div className="row-stat-num">{avgFinishDay}d</div>
         )}
         {speedMode === "current" && (
           <>
             <StatusPill tone={paceStatus.tone} label={paceStatus.label} />
             {avgFinishDay != null && (
-              <div className="row-stat-soft">{avgFinishDay}d avg so far ({finisherSampleSize} finished)</div>
+              <div className="row-stat-soft">{avgFinishDay}d so far</div>
             )}
           </>
         )}
         {speedMode === "upcoming" && <div className="row-stat-dim">Not yet launched</div>}
-        {speedMode === "none" && <div className="row-stat-dim">Pick a single wave for pace</div>}
+        {speedMode === "none" && <div className="row-stat-dim">Pick a wave</div>}
       </div>
     </div>
   );
@@ -584,13 +584,13 @@ export default function App() {
         }
         .segctl-btn.active { background: var(--accent); color: var(--bg); }
         .row-head {
-          display: grid; grid-template-columns: 32px 1.4fr 1.3fr 1.2fr 1.4fr; gap: 14px; padding: 0 14px 8px 14px;
+          display: grid; grid-template-columns: 32px 1.2fr 1.9fr 1fr 0.85fr; gap: 14px; padding: 0 14px 8px 14px;
           color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; font-family: 'JetBrains Mono', monospace;
         }
         .rows { display: flex; flex-direction: column; gap: 10px; }
         .empty { color: var(--muted); font-size: 13px; padding: 20px; text-align: center; }
         .row {
-          display: grid; grid-template-columns: 32px 1.4fr 1.3fr 1.2fr 1.4fr; gap: 14px; align-items: center;
+          display: grid; grid-template-columns: 32px 1.2fr 1.9fr 1fr 0.85fr; gap: 14px; align-items: center;
           background: var(--surface-alt); border: 1px solid var(--border); border-radius: 10px; padding: 14px;
         }
         .row-rank { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 20px; color: var(--accent); text-align: center; }
@@ -600,8 +600,11 @@ export default function App() {
         .row-stat { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
         .row-stat-label { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
         .row-stat-num { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 14px; }
+        .row-stat-num-lg { font-size: 18px; }
         .row-stat-dim { color: var(--muted); font-weight: 500; font-size: 11px; }
         .row-stat-soft { color: var(--muted); font-size: 11px; margin-top: 2px; }
+        .progress-track { width: 100%; height: 10px; background: var(--border); border-radius: 5px; overflow: hidden; margin: 2px 0; }
+        .progress-fill { height: 100%; background: var(--progress); border-radius: 5px; }
         .headline-card {
           display: flex; align-items: center; gap: 18px; background: var(--surface-alt);
           border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin-bottom: 18px;
