@@ -690,11 +690,12 @@ export default function App() {
         .podium-empty { color: var(--muted); font-size: 12px; padding: 8px 0; }
         .podium-entry { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-top: 1px solid var(--border); }
         .podium-entry:first-child { border-top: none; }
-        .podium-medal { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11px; color: var(--muted); width: 30px; flex-shrink: 0; }
-        .podium-name { flex: 1; font-size: 13px; font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .podium-value { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 13px; flex-shrink: 0; }
-        .podium-rank-1 .podium-medal, .podium-rank-1 .podium-value { color: var(--accent); }
-        .podium-rank-1 .podium-name { font-size: 15px; }
+        .podium-medal { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 12px; color: var(--muted); width: 30px; flex-shrink: 0; }
+        .podium-name { flex: 1; font-size: 13px; font-weight: 600; color: var(--text); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .podium-value { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px; color: var(--text); flex-shrink: 0; }
+        .podium-rank-1 .podium-medal { color: var(--progress); font-size: 15px; }
+        .podium-rank-1 .podium-name { color: var(--progress); font-size: 16px; }
+        .podium-rank-1 .podium-value { color: var(--progress); font-size: 15px; }
         .progress-track { width: 100%; height: 10px; background: var(--border); border-radius: 5px; overflow: hidden; margin: 2px 0; }
         .progress-fill { height: 100%; background: var(--progress); border-radius: 5px; }
         .headline-card {
