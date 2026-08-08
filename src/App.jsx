@@ -617,7 +617,8 @@ export default function App() {
           min-height: 100%;
           border-radius: 12px;
         }
-        .header { margin-bottom: 20px; }
+        .header { position: relative; margin-bottom: 20px; padding-right: 100px; }
+        .app-logo { position: absolute; top: 0; right: 0; height: 72px; width: auto; }
         .eyebrow {
           font-family: 'Poppins', sans-serif;
           font-size: 11px;
@@ -634,8 +635,7 @@ export default function App() {
           margin: 0 0 4px 0;
         }
         .subtitle { color: var(--muted); font-size: 14px; margin: 0; }
-        .tabs { display: flex; align-items: center; justify-content: space-between; margin: 22px 0; }
-        .tabs-left { display: flex; gap: 8px; }
+        .tabs { display: flex; gap: 8px; margin: 22px 0; }
         .app-logo { height: 34px; width: auto; }
         .tab-btn {
           background: var(--surface);
@@ -725,10 +725,13 @@ export default function App() {
           .exec-table-head, .exec-row { grid-template-columns: 1.4fr 0.6fr 1fr 0.8fr 0.9fr; font-size: 11px; }
           .title { font-size: 26px; }
           .podium-row { grid-template-columns: 1fr; }
+          .header { padding-right: 60px; }
+          .app-logo { height: 44px; }
         }
       `}</style>
 
       <div className="header">
+        <img src="/podium.svg" alt="Wave Sprint logo" className="app-logo" />
         <div className="eyebrow">AI Practice Enablement · Mock Data</div>
         <h1 className="title">Wave Sprint</h1>
         <p className="subtitle">
@@ -737,11 +740,8 @@ export default function App() {
       </div>
 
       <div className="tabs">
-        <div className="tabs-left">
-          <button className={"tab-btn" + (tab === "gamified" ? " active" : "")} onClick={() => setTab("gamified")}>Gamified Boards</button>
-          <button className={"tab-btn" + (tab === "exec" ? " active" : "")} onClick={() => setTab("exec")}>Exec Dashboard</button>
-        </div>
-        <img src="/podium.svg" alt="Wave Sprint logo" className="app-logo" />
+        <button className={"tab-btn" + (tab === "gamified" ? " active" : "")} onClick={() => setTab("gamified")}>Gamified Boards</button>
+        <button className={"tab-btn" + (tab === "exec" ? " active" : "")} onClick={() => setTab("exec")}>Exec Dashboard</button>
       </div>
 
       {tab === "gamified" ? <GamifiedBoards data={data} /> : <ExecDashboard data={data} />}
