@@ -634,7 +634,9 @@ export default function App() {
           margin: 0 0 4px 0;
         }
         .subtitle { color: var(--muted); font-size: 14px; margin: 0; }
-        .tabs { display: flex; gap: 8px; margin: 22px 0; }
+        .tabs { display: flex; align-items: center; justify-content: space-between; margin: 22px 0; }
+        .tabs-left { display: flex; gap: 8px; }
+        .app-logo { height: 34px; width: auto; }
         .tab-btn {
           background: var(--surface);
           border: 1px solid var(--border);
@@ -735,8 +737,11 @@ export default function App() {
       </div>
 
       <div className="tabs">
-        <button className={"tab-btn" + (tab === "gamified" ? " active" : "")} onClick={() => setTab("gamified")}>Gamified Boards</button>
-        <button className={"tab-btn" + (tab === "exec" ? " active" : "")} onClick={() => setTab("exec")}>Exec Dashboard</button>
+        <div className="tabs-left">
+          <button className={"tab-btn" + (tab === "gamified" ? " active" : "")} onClick={() => setTab("gamified")}>Gamified Boards</button>
+          <button className={"tab-btn" + (tab === "exec" ? " active" : "")} onClick={() => setTab("exec")}>Exec Dashboard</button>
+        </div>
+        <img src="/podium.svg" alt="Wave Sprint logo" className="app-logo" />
       </div>
 
       {tab === "gamified" ? <GamifiedBoards data={data} /> : <ExecDashboard data={data} />}
