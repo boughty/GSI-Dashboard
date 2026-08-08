@@ -644,7 +644,7 @@ export default function App() {
           font-size: 13px;
           font-weight: 600;
           cursor: pointer;
-          font-family: inherit;
+          font-family: 'Poppins', sans-serif;
         }
         .tab-btn.active { color: var(--text); background: var(--accent); border-color: var(--accent); }
         .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
@@ -656,12 +656,12 @@ export default function App() {
         }
         .select {
           background: var(--surface-alt); color: var(--text); border: 1px solid var(--border);
-          border-radius: 6px; padding: 7px 10px; font-size: 13px; font-family: inherit; min-width: 170px;
+          border-radius: 6px; padding: 7px 10px; font-size: 13px; font-family: 'Poppins', sans-serif; min-width: 170px;
         }
         .segctl { display: flex; gap: 4px; background: var(--surface-alt); padding: 3px; border-radius: 8px; border: 1px solid var(--border); }
         .segctl-btn {
           background: transparent; border: none; color: var(--muted); padding: 7px 12px; border-radius: 6px;
-          font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit;
+          font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif;
         }
         .segctl-btn.active { background: var(--accent); color: var(--text); }
         .row-head {
