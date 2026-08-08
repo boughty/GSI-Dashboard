@@ -734,9 +734,9 @@ export default function App() {
       `}</style>
 
       <div className="header">
-        <img src="/podium.svg" alt="Wave Sprint logo" className="app-logo" />
+        <img src="/podium.svg" alt="Partner X logo" className="app-logo" />
         <div className="eyebrow">AI Practice Enablement · Mock Data</div>
-        <h1 className="title">Wave Sprint</h1>
+        <h1 className="title">Partner X</h1>
         <p className="subtitle">
           {data.length.toLocaleString()} synthetic practitioners across {WAVES.length} waves, {GEOS.length} geographies, {VERTICALS.length} verticals — standing in for live Skilljar progress + Credly badge data.
         </p>
