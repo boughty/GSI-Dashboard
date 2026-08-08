@@ -595,6 +595,7 @@ export default function App() {
   return (
     <div className="app">
       <style>{`
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Lora:wght@400;500;600&display=swap');
         :root {
           --bg: #0f1420;
           --surface: #171e2e;
@@ -611,7 +612,7 @@ export default function App() {
         .app {
           background: var(--bg);
           color: var(--text);
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+          font-family: 'Lora', Georgia, serif;
           padding: 28px;
           min-height: 100%;
           border-radius: 12px;
@@ -626,7 +627,7 @@ export default function App() {
           margin-bottom: 6px;
         }
         .title {
-          font-family: 'Barlow Condensed', 'Inter', sans-serif;
+          font-family: 'Poppins', sans-serif;
           font-weight: 700;
           font-size: 34px;
           letter-spacing: 0.01em;
