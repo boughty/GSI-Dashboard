@@ -1,4 +1,4 @@
-# Wave Sprint — Enablement Leaderboard (mock)
+# Partner X — Enablement Leaderboard (mock)
 
 A React + Vite app for the GSI AI practice enablement leaderboard prototype.
 Currently running on synthetic data — see the adapter functions in
